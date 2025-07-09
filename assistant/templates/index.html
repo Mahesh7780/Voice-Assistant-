@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Luca Assistant</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <h1>🧠 Luca – Your Smart Assistant</h1>
+  <input type="text" id="input" placeholder="Ask something...">
+  <button onclick="ask()">Send</button>
+  <button onclick="askVoice()">🎙️ Speak</button>
+  <p id="response"></p>
+
+  <script>
+    async function ask() {
+      const query = document.getElementById("input").value;
+      const res = await fetch("/ask", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query })
+      });
+      const data = await res.json();
+      document.getElementById("response").innerText = data.response || data.error;
+    }
+
+    async function askVoice() {
+      const res = await fetch("/voice", { method: "POST" });
+      const data = await res.json();
+      document.getElementById("response").innerText = data.response || data.error;
+    }
+  </script>
+</body>
+</html>

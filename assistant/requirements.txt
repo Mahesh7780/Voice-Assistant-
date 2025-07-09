@@ -1,0 +1,9 @@
+Flask
+langchain
+langchain-community
+langchain-ollama
+pyttsx3
+SpeechRecognition
+pyaudio
+pyautogui
+duckduckgo-search
